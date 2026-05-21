@@ -8,7 +8,7 @@ if ($units == 'metric'){//Changes the $temp varaible to match
 else {
     $temp = "F";
 }
-$googleApiUrl = "http://api.openweathermap.org/data/2.5/weather?id=" . $cityId . "&lang=en&units=" . $units . "&APPID=" . $apiKey;
+$googleApiUrl = "http://api.openweathermap.org/data/2.5/weather?id=5046997&units=imperial" . $cityId . "&lang=en&units=" . $units . "&APPID=" . $apiKey = "c14978e83d18ee75190e41eacfaabcc1";
 
 $ch = curl_init();
 
@@ -31,6 +31,18 @@ $currentTime = time();
 <title>Forecast Weather using OpenWeatherMap with PHP</title>
 
 <style>
+
+$temp = $weather->main->temp;
+
+if ($temp > 80) {
+    $bg = "red";
+} elseif ($temp > 60) {
+    $bg = "orange";
+} else {
+    $bg = "lightblue";
+}
+
+
 body {
     font-family: Arial;
     font-size: 0.95em;
@@ -69,6 +81,14 @@ span.min-temperature {
 
 </head>
 <body>
+
+<body style="background-color: <?php echo $bg; ?>;">
+
+
+echo "<h1>Shakopee Weather</h1>";
+echo "<p>Temperature: " . $weather->main->temp . " °F</p>";
+echo "<p>Condition: " . $weather->weather[0]->description . "</p>";
+
 
     <div class="report-container">
         <h2><?php echo $data->name; ?> Weather Status</h2>
